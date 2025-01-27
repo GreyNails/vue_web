@@ -45,6 +45,27 @@
       <!-- 第四个画布内容 -->
     </div>
 
+    <div class="sub-canvas canvas-8">
+    <img class="image-114" src="@/assets/home_new/小标题1.2.png" alt="image">
+
+    </div>
+
+
+    <div class="sub-canvas canvas-5">
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide" v-for="(image, index) in images" :key="index" @click="goToPage('new')">
+            <img :src="image.src" :alt="image.alt" class="swiper-img"/>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
     <!-- 底部红色区域 -->
     <div class="sub-canvas canvas-6">
         <img class="image-26" src="@/assets/shouye/中央行政办.png" alt="image">
@@ -67,14 +88,57 @@
 
 
 <script>
+import Swiper from 'swiper';
+import { Navigation, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import carousel1 from '@/assets/home_new/自动轮播.png';
+import carousel2 from '@/assets/home_new/Frame_13.png';
+
 export default {
   name: 'Home',
+  data() {
+    return {
+      swiper: null,
+      images: [
+        {
+          src: carousel1,
+          alt: '轮播图1'
+        },
+        {
+          src: carousel2,
+          alt: '轮播图2'
+        }
+      ]
+    };
+  },
+  mounted() {
+    this.swiper = new Swiper('.swiper-container', {
+      modules: [Navigation, Autoplay],
+      loop: true,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false
+      },
+      direction: 'horizontal',
+      speed: 500,
+      slidesPerView: 1
+    });
+  },
+  beforeDestroy() {
+    if (this.swiper) {
+      this.swiper.destroy();
+    }
+  },
   methods: {
     goToPage(pageName) {
       this.$router.push(`/${pageName}`);
     }
   }
 }
+
+
+
 </script>
 
 
@@ -84,7 +148,7 @@ export default {
   position: relative;          /* 相对定位 */
   width: 100%;                /* 改为百分比宽度 */
 max-width: 1920px;          /* 最大宽度限制 */
-  height: 4500px;             /* 设计稿高度 */
+  height: 5500px;             /* 设计稿高度 */
   background-color: #fff;     /* 白色背景 */
   margin: 0 auto;             /* 居中显示 */
 }
@@ -296,49 +360,49 @@ max-width: 1920px;          /* 最大宽度限制 */
 .canvas-6 .image-26 {
   position: absolute;
   left: 59px;
-  top: 3901px;  /* 175px - 60pt(canvas-2的top值) */
+  top: 4901px;  /* 175px - 60pt(canvas-2的top值) */
   z-index: 3;
 }
 .canvas-6 .image-27 {
   position: absolute;
   left: 1445px;
-  top: 3901px;  /* 175px - 60pt(canvas-2的top值) */
+  top: 4901px;  /* 175px - 60pt(canvas-2的top值) */
   z-index: 2;
 }
 .canvas-6 .image-28 {
   position: absolute;
   left: 59px;
-  top: 4153px;  /* 175px - 60pt(canvas-2的top值) */
+  top: 5153px;  /* 175px - 60pt(canvas-2的top值) */
   z-index: 2;
 }
 .canvas-6 .image-29 {
   position: absolute;
   left: 1445px;
-  top: 4153px;  /* 175px - 60pt(canvas-2的top值) */
+  top: 5153px;  /* 175px - 60pt(canvas-2的top值) */
   z-index: 2;
 }
 .canvas-6 .image-30 {
   position: absolute;
   left: 773px;
-  top: 4153px;  /* 175px - 60pt(canvas-2的top值) */
+  top: 5153px;  /* 175px - 60pt(canvas-2的top值) */
   z-index: 2;
 }
 .canvas-6 .image-31 {
   position: absolute;
   left: 773px;
-  top: 3901px;  /* 175px - 60pt(canvas-2的top值) */
+  top: 4901px;  /* 175px - 60pt(canvas-2的top值) */
   z-index: 2;
 }
 .canvas-6 .image-32 {
   position: absolute;
   left: 59px;
-  top: 3766px;  /* 175px - 60pt(canvas-2的top值) */
+  top: 4766px;  /* 175px - 60pt(canvas-2的top值) */
   z-index: 3;
 }
 
 /* 底部红色区域 - 自适应宽度 */
 .canvas-7 {
-  top: calc(60pt + 1020px + 1800px + 790px); /* 位置计算 */
+  top: calc(60pt + 1020px + 1800px + 1790px); /* 位置计算 */
   height: 715pt;             /* 高度715pt */
   background-color: #A0303C; /* 红色背景 */
   width: 100vw;              /* 视口宽度 */
@@ -354,5 +418,68 @@ max-width: 1920px;          /* 最大宽度限制 */
     transform: scale(var(--scale-ratio));
     transform-origin: top center;
   }
+}
+
+.canvas-5 {
+  position: absolute;
+  left: 64px;
+  top: 3795px;
+  width: 1530px;
+  height: 680px;
+  z-index: 2;
+  overflow: hidden;  /* 添加这一行 */
+}
+
+.swiper-container {
+  width: 1533px;
+  height: 680px;
+}
+
+.swiper-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.swiper-slide {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.swiper-img {
+  width: 100%;
+}
+
+
+.canvas-8 {
+  position: absolute;
+  left: 20.75px;
+  top: 3651px;
+  width: 1920px;
+  height: 680px;
+  z-index: 2;
+  overflow: hidden;  /* 添加这一行 */
+}
+.canvas-8 .image-114 {
+  position: absolute;
+  left: 63.75px;
+  top: 0px;  /* 175px - 60pt(canvas-2的top值) */
+  z-index: 3;
+}
+
+/* 内容区域4 */
+.canvas-4 {
+  top: 60pt ; /* 位置计算+ 1020px + 1800px */
+  height: 790px;
+}
+.canvas-4 .image-14 {
+  position: absolute;
+  left: 102px;
+  top: 3002px;
+  z-index: 2;
+  cursor: pointer;
 }
 </style>
