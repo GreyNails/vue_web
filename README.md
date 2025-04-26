@@ -1,5 +1,11 @@
 ## to run this project
-### 1.
-```npm install```
-### 2.
-```npm run dev```
+
+```
+git clone https://github.com/GreyNails/vue_web.git
+
+cd vue_web
+
+npm install
+
+npm run dev
+```
